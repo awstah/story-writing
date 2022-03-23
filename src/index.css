@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mantine-lml7tc {
+  border: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.mantine-lml7tc .ql-editor {
+  padding: 12px 12px 50px 16px !important;
+  font-size: large;
+  background-color: #f9fafb;
+  min-height: 500px;
+  border-radius: 0.3rem;
+}
+
+.mantine-bdajhj {
+  border: none;
 }

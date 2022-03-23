@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import CreateStory from "./Pages/CreateStory";
+import { authentication } from "./firebase";
+import Login from "./Pages/Login";
+import Home from "./Pages/Home";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout.js/Layout";
+import Story from "./Pages/Story";
 
 function App() {
+  const [user, setuser] = useState(null);
+
+  onAuthStateChanged(authentication, (user) => {
+    if (user) {
+      setuser(user);
+    }
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="overflow-hidden">
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home user={user} setUser={setuser} />} />
+          <Route path="story/:id" element={<Story />} />
+          <Route
+            path="write"
+            element={<CreateStory user={user} setUser={setuser} />}
+          />
+        </Route>
+        <Route path="login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
